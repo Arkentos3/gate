@@ -2,7 +2,6 @@ import React from 'react';
 import Card from '../components/ui/Card';
 import Stat from '../components/ui/Stat';
 import TransactionList from '../components/dashboard/TransactionList';
-import RevenueChart from '../components/dashboard/RevenueChart';
 import SystemStatusCard from '../components/dashboard/SystemStatusCard';
 import UserActivityCard from '../components/dashboard/UserActivityCard';
 import QuickActionsCard from '../components/dashboard/QuickActionsCard';
@@ -96,8 +95,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Main Dashboard Content */}
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-        <RevenueChart />
+      <div className="grid grid-cols-1 gap-5">
         <PaymentMonitorCard />
       </div>
       

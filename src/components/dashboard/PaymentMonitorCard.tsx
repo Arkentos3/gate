@@ -11,37 +11,37 @@ const PaymentMonitorCard: React.FC<PaymentMonitorCardProps> = ({ className = '' 
   const recentPayments = [
     {
       id: 'pay_2309823',
-      customer: 'Alex Johnson',
+      customer: 'Joao Pereira',
       time: '2 minutes ago',
-      amount: 129.99,
+      amount: 16.05,
       status: 'completed'
     },
     {
       id: 'pay_2309822',
-      customer: 'Sarah Williams',
+      customer: 'Vanessa Cosandey',
       time: '15 minutes ago',
       amount: 59.99,
       status: 'pending'
     },
     {
       id: 'pay_2309821',
-      customer: 'Michael Brown',
+      customer: 'Charlotte Ruel',
       time: '32 minutes ago',
-      amount: 299.99,
+      amount: 20.00,
       status: 'completed'
     },
     {
       id: 'pay_2309820',
-      customer: 'Emily Davis',
+      customer: 'Michel Bekas',
       time: '1 hour ago',
-      amount: 19.99,
+      amount: 50.00,
       status: 'failed'
     },
     {
       id: 'pay_2309819',
-      customer: 'Chris Miller',
+      customer: 'ANTONIOS CHRISTOFIS',
       time: '2 hours ago',
-      amount: 89.99,
+      amount: 200.00,
       status: 'completed'
     }
   ];

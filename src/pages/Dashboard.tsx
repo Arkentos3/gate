@@ -84,29 +84,29 @@ const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <Stat
           title="Total Revenue"
-          value="€12,875.35"
+          value="€339,980.5"
           change={{ value: 12, trend: 'up' }}
           icon={<TrendingUp className="h-5 w-5" />}
           className="shadow-sm"
         />
         <Stat
           title="Transactions"
-          value="1,234"
+          value="5,605"
           change={{ value: 8, trend: 'up' }}
           icon={<CreditCard className="h-5 w-5" />}
           className="shadow-sm"
         />
         <Stat
           title="Chargebacks"
-          value="€487.20"
-          change={{ value: 2.5, trend: 'down' }}
+          value="€1,327.4"
+          change={{ value: 2.5, trend: 'up' }}
           icon={<AlertTriangle className="h-5 w-5" />}
           className="shadow-sm"
         />
         <Stat
           title="Refunds"
-          value="€892.45"
-          change={{ value: 1.2, trend: 'up' }}
+          value="€0.0"
+          change={{ value: 0.0, trend: 'up' }}
           icon={<RefreshCw className="h-5 w-5" />}
           className="shadow-sm"
         />

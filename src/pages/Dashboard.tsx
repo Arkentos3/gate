@@ -3,8 +3,6 @@ import Card from '../components/ui/Card';
 import Stat from '../components/ui/Stat';
 import TransactionList from '../components/dashboard/TransactionList';
 import SystemStatusCard from '../components/dashboard/SystemStatusCard';
-import UserActivityCard from '../components/dashboard/UserActivityCard';
-import QuickActionsCard from '../components/dashboard/QuickActionsCard';
 import PaymentMonitorCard from '../components/dashboard/PaymentMonitorCard';
 import { CreditCard, TrendingUp, Users, Activity } from 'lucide-react';
 
@@ -95,16 +93,10 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Main Dashboard Content */}
-      <div className="grid grid-cols-1 gap-5">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <PaymentMonitorCard />
-      </div>
-      
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-        <UserActivityCard className="lg:col-span-2" />
         <SystemStatusCard />
       </div>
-
-      <QuickActionsCard />
 
       {/* Recent Transactions */}
       <Card title="Recent Transactions" subtitle="Your most recent payment transactions">

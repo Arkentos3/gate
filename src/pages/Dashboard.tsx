@@ -4,10 +4,10 @@ import Stat from '../components/ui/Stat';
 import TransactionList from '../components/dashboard/TransactionList';
 import SystemStatusCard from '../components/dashboard/SystemStatusCard';
 import PaymentMonitorCard from '../components/dashboard/PaymentMonitorCard';
-import { CreditCard, TrendingUp, Users, Activity } from 'lucide-react';
+import Button from '../components/ui/Button';
+import { CreditCard, TrendingUp, Users, Activity, AlertTriangle, RefreshCw } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
-  // Mock data for transactions
   const transactions = [
     {
       id: 'TX123456789',
@@ -53,18 +53,38 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Overview of your payment system performance
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+          <p className="mt-1 text-sm text-gray-500">
+            Overview of your payment system performance
+          </p>
+        </div>
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
+            <input
+              type="date"
+              className="block rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+              defaultValue={new Date().toISOString().split('T')[0]}
+            />
+            <span className="text-gray-500">to</span>
+            <input
+              type="date"
+              className="block rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+              defaultValue={new Date().toISOString().split('T')[0]}
+            />
+          </div>
+          <Button variant="primary" size="sm">
+            Apply
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <Stat
           title="Total Revenue"
-          value="$12,875.35"
+          value="€12,875.35"
           change={{ value: 12, trend: 'up' }}
           icon={<TrendingUp className="h-5 w-5" />}
           className="shadow-sm"
@@ -77,17 +97,17 @@ const Dashboard: React.FC = () => {
           className="shadow-sm"
         />
         <Stat
-          title="Active Users"
-          value="435"
-          change={{ value: 4, trend: 'up' }}
-          icon={<Users className="h-5 w-5" />}
+          title="Chargebacks"
+          value="€487.20"
+          change={{ value: 2.5, trend: 'down' }}
+          icon={<AlertTriangle className="h-5 w-5" />}
           className="shadow-sm"
         />
         <Stat
-          title="Conversion Rate"
-          value="3.6%"
-          change={{ value: 0.8, trend: 'down' }}
-          icon={<Activity className="h-5 w-5" />}
+          title="Refunds"
+          value="€892.45"
+          change={{ value: 1.2, trend: 'up' }}
+          icon={<RefreshCw className="h-5 w-5" />}
           className="shadow-sm"
         />
       </div>

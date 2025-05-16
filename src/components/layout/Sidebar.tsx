@@ -36,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ mobile }) => {
       <div className="flex items-center h-16 flex-shrink-0 px-4 bg-green-800">
         <div className="flex items-center space-x-2">
           <CreditCard className="h-8 w-8 text-white" />
-          <span className="text-white font-semibold text-lg">PayDash</span>
+          <span className="text-white font-semibold text-lg">Slyse</span>
         </div>
       </div>
       <div className="mt-5 flex-1 flex flex-col overflow-y-auto">
@@ -61,7 +61,31 @@ const Sidebar: React.FC<SidebarProps> = ({ mobile }) => {
             </a>
           ))}
         </nav>
-        <div className="mt-6 pt-6">
+
+        {/* Merchant Info */}
+        <div className="mx-2 mt-6 mb-4">
+          <div className="bg-gray-100 rounded-[13px] p-4">
+            <div className="space-y-2">
+              <div className="flex flex-col">
+                <span className="text-sm font-medium text-gray-700">Merchant:</span>
+                <span className="text-sm text-gray-900">Artifium</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm font-medium text-gray-700">Website URL:</span>
+                <a 
+                  href="http://www.artifium.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-sm text-green-600 hover:text-green-800 truncate"
+                >
+                  www.artifium.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="pt-6">
           <div className="px-2 space-y-1">
             {secondaryNavigation.map((item) => (
               <a

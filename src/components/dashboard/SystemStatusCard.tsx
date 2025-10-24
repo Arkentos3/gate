@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
 import ProgressBar from '../ui/ProgressBar';
 import { CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import { getSystemStatus } from '../../utils/data';
 
 interface SystemStatusCardProps {
   className?: string;
 }
 
 const SystemStatusCard: React.FC<SystemStatusCardProps> = ({ className = '' }) => {
-  const systems = [
-    { name: 'Payment Processing', status: 'operational', uptime: 99.9 },
-    { name: 'Authentication', status: 'operational', uptime: 100 },
-    { name: 'Analytics', status: 'degraded', uptime: 95.5 },
-    { name: 'Customer Portal', status: 'operational', uptime: 99.7 },
-    { name: 'Reporting API', status: 'operational', uptime: 99.8 },
-  ];
+  const [systems, setSystems] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getSystemStatus();
+      setSystems(data);
+    };
+    loadData();
+  }, []);
 
   const getStatusBadge = (status: string) => {
     switch (status) {

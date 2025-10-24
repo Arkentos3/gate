@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../components/ui/Card';
 import Stat from '../components/ui/Stat';
 import TransactionList from '../components/dashboard/TransactionList';
@@ -6,50 +6,18 @@ import SystemStatusCard from '../components/dashboard/SystemStatusCard';
 import PaymentMonitorCard from '../components/dashboard/PaymentMonitorCard';
 import Button from '../components/ui/Button';
 import { CreditCard, TrendingUp, Users, Activity, AlertTriangle, RefreshCw } from 'lucide-react';
+import { getTransactions } from '../utils/data';
 
 const Dashboard: React.FC = () => {
-  const transactions = [
-    {
-      id: 'TX123456789',
-      date: 'May 26, 2025',
-      name: 'John Smith',
-      amount: 120.50,
-      status: 'completed' as const,
-      paymentMethod: 'Visa **** 4242',
-    },
-    {
-      id: 'TX123456788',
-      date: 'May 26, 2025',
-      name: 'Alice Johnson',
-      amount: 75.20,
-      status: 'pending' as const,
-      paymentMethod: 'Mastercard **** 5555',
-    },
-    {
-      id: 'TX123456787',
-      date: 'May 25, 2025',
-      name: 'Bob Williams',
-      amount: 250.00,
-      status: 'completed' as const,
-      paymentMethod: 'PayPal',
-    },
-    {
-      id: 'TX123456786',
-      date: 'May 25, 2025',
-      name: 'Carol Davis',
-      amount: 30.99,
-      status: 'failed' as const,
-      paymentMethod: 'Visa **** 1234',
-    },
-    {
-      id: 'TX123456785',
-      date: 'May 24, 2025',
-      name: 'David Miller',
-      amount: 149.99,
-      status: 'completed' as const,
-      paymentMethod: 'American Express **** 9876',
-    },
-  ];
+  const [transactions, setTransactions] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getTransactions();
+      setTransactions(data);
+    };
+    loadData();
+  }, []);
 
   return (
     <div className="space-y-6">

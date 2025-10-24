@@ -1,50 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
 import { ArrowUpRight, Clock, CheckCircle, XCircle } from 'lucide-react';
+import { getRecentPayments } from '../../utils/data';
 
 interface PaymentMonitorCardProps {
   className?: string;
 }
 
 const PaymentMonitorCard: React.FC<PaymentMonitorCardProps> = ({ className = '' }) => {
-  const recentPayments = [
-    {
-      id: 'pay_2309823',
-      customer: 'Joao Pereira',
-      time: '2 minutes ago',
-      amount: 16.05,
-      status: 'completed'
-    },
-    {
-      id: 'pay_2309822',
-      customer: 'Vanessa Cosandey',
-      time: '15 minutes ago',
-      amount: 59.99,
-      status: 'pending'
-    },
-    {
-      id: 'pay_2309821',
-      customer: 'Charlotte Ruel',
-      time: '32 minutes ago',
-      amount: 20.00,
-      status: 'completed'
-    },
-    {
-      id: 'pay_2309820',
-      customer: 'Michel Bekas',
-      time: '1 hour ago',
-      amount: 50.00,
-      status: 'failed'
-    },
-    {
-      id: 'pay_2309819',
-      customer: 'ANTONIOS CHRISTOFIS',
-      time: '2 hours ago',
-      amount: 200.00,
-      status: 'completed'
-    }
-  ];
+  const [recentPayments, setRecentPayments] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getRecentPayments();
+      setRecentPayments(data);
+    };
+    loadData();
+  }, []);
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('de-DE', {

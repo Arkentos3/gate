@@ -1,10 +1,11 @@
 import React from 'react';
-import { 
-  BarChart3, 
-  CreditCard, 
-  Activity, 
-  Users, 
-  Settings, 
+import { Link, useLocation } from 'react-router-dom';
+import {
+  BarChart3,
+  CreditCard,
+  Activity,
+  Users,
+  Settings,
   HelpCircle,
   Home,
   AlertTriangle,
@@ -16,19 +17,21 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ mobile }) => {
+  const location = useLocation();
+
   const navigation = [
-    { name: 'Dashboard', icon: Home, current: true },
-    { name: 'Transactions', icon: CreditCard, current: false },
-    { name: 'Analytics', icon: BarChart3, current: false },
-    { name: 'Customers', icon: Users, current: false },
-    { name: 'Activity', icon: Activity, current: false },
-    { name: 'System Status', icon: AlertTriangle, current: false },
+    { name: 'Dashboard', icon: Home, path: '/' },
+    { name: 'Transactions', icon: CreditCard, path: '/transactions' },
+    { name: 'Analytics', icon: BarChart3, path: '#' },
+    { name: 'Customers', icon: Users, path: '#' },
+    { name: 'Activity', icon: Activity, path: '#' },
+    { name: 'System Status', icon: AlertTriangle, path: '#' },
   ];
 
   const secondaryNavigation = [
-    { name: 'Settings', icon: Settings },
-    { name: 'Help', icon: HelpCircle },
-    { name: 'Logout', icon: LogOut },
+    { name: 'Settings', icon: Settings, path: '#' },
+    { name: 'Help', icon: HelpCircle, path: '#' },
+    { name: 'Logout', icon: LogOut, path: '#' },
   ];
 
   return (
@@ -41,25 +44,31 @@ const Sidebar: React.FC<SidebarProps> = ({ mobile }) => {
       </div>
       <div className="mt-5 flex-1 flex flex-col overflow-y-auto">
         <nav className="flex-1 px-2 space-y-1">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
-              href="#"
-              className={`${
-                item.current
-                  ? 'bg-green-100 text-green-900'
-                  : 'text-gray-600 hover:bg-green-50 hover:text-green-900'
-              } group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-150`}
-            >
-              <item.icon
+          {navigation.map((item) => {
+            const isCurrent = location.pathname === item.path;
+            const Component = item.path === '#' ? 'a' : Link;
+
+            return (
+              <Component
+                key={item.name}
+                to={item.path === '#' ? undefined : item.path}
+                href={item.path === '#' ? '#' : undefined}
                 className={`${
-                  item.current ? 'text-green-800' : 'text-gray-400 group-hover:text-green-600'
-                } mr-3 flex-shrink-0 h-6 w-6 transition-colors duration-150`}
-                aria-hidden="true"
-              />
-              {item.name}
-            </a>
-          ))}
+                  isCurrent
+                    ? 'bg-green-100 text-green-900'
+                    : 'text-gray-600 hover:bg-green-50 hover:text-green-900'
+                } group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-150`}
+              >
+                <item.icon
+                  className={`${
+                    isCurrent ? 'text-green-800' : 'text-gray-400 group-hover:text-green-600'
+                  } mr-3 flex-shrink-0 h-6 w-6 transition-colors duration-150`}
+                  aria-hidden="true"
+                />
+                {item.name}
+              </Component>
+            );
+          })}
         </nav>
 
         {/* Merchant Info */}
@@ -90,7 +99,7 @@ const Sidebar: React.FC<SidebarProps> = ({ mobile }) => {
             {secondaryNavigation.map((item) => (
               <a
                 key={item.name}
-                href="#"
+                href={item.path}
                 className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900"
               >
                 <item.icon

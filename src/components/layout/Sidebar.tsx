@@ -46,13 +46,33 @@ const Sidebar: React.FC<SidebarProps> = ({ mobile }) => {
         <nav className="flex-1 px-2 space-y-1">
           {navigation.map((item) => {
             const isCurrent = location.pathname === item.path;
-            const Component = item.path === '#' ? 'a' : Link;
+
+            if (item.path === '#') {
+              return (
+                <a
+                  key={item.name}
+                  href="#"
+                  className={`${
+                    isCurrent
+                      ? 'bg-green-100 text-green-900'
+                      : 'text-gray-600 hover:bg-green-50 hover:text-green-900'
+                  } group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-150`}
+                >
+                  <item.icon
+                    className={`${
+                      isCurrent ? 'text-green-800' : 'text-gray-400 group-hover:text-green-600'
+                    } mr-3 flex-shrink-0 h-6 w-6 transition-colors duration-150`}
+                    aria-hidden="true"
+                  />
+                  {item.name}
+                </a>
+              );
+            }
 
             return (
-              <Component
+              <Link
                 key={item.name}
-                to={item.path === '#' ? undefined : item.path}
-                href={item.path === '#' ? '#' : undefined}
+                to={item.path}
                 className={`${
                   isCurrent
                     ? 'bg-green-100 text-green-900'
@@ -66,7 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({ mobile }) => {
                   aria-hidden="true"
                 />
                 {item.name}
-              </Component>
+              </Link>
             );
           })}
         </nav>
